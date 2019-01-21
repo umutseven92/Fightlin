@@ -1,8 +1,12 @@
 import fighter.Fighter
-import archetype.Mage
 import archetype.Warrior
+import com.beust.klaxon.Klaxon
+import com.xenomachina.argparser.ArgParser
+import fighter.FighterDTO
+import fighter.FighterHelper
+import java.io.File
 
-fun main() {
+fun main(args: Array<String>) {
 
     println("\n" +
             "\n" +
@@ -18,8 +22,17 @@ fun main() {
             "                                                           \n" +
             "\n")
 
-    val mage = Fighter("Merlin", Mage())
-    val warrior = Fighter("Grognak the Barbarian", Warrior())
+
+    val arguments = ArgParser(args).parseInto(::MyArgs)
+
+    val jsonPath = arguments.fighterPath
+
+    val fighterJson = File(jsonPath).readText()
+
+    val userDTO = Klaxon().parse<FighterDTO>(fighterJson)
+
+    val mage = FighterHelper().convertDtoToFighter(userDTO!!)
+    val warrior = Fighter("Grognak the Barbarian", "A fierce warrior.", Warrior())
 
     val arena = Arena(Pair(mage, warrior))
 

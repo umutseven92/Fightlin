@@ -7,7 +7,10 @@ class Arena(var fighters: Pair<Fighter, Fighter>) {
         println("Welcome spectators, to the Arena!")
 
         println("On one corner, we have the mighty ${fighters.first.name}!")
+        println("${fighters.first.description}!")
         println("On the other corner, we have the blood-thirsty ${fighters.second.name}!")
+        println("${fighters.second.description}!")
+
         println("You came to watch a fight! And a fight. You. Shall. Have!")
 
         printDivider()

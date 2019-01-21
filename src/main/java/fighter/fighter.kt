@@ -6,7 +6,7 @@ import archetype.Archetype
 import Weapon
 import kotlin.random.Random
 
-class Fighter(val name: String, archetype: Archetype) {
+class Fighter(val name: String, val description: String, archetype: Archetype) {
 
     private var state: FighterState
     private var health: Float
